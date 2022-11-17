@@ -9,7 +9,8 @@ class MoviesClient
   def discover
   end
 
-  def configuration
+  def get_configuration
+    RestUtil.make_request "configuration", {:api_key => API_KEY}
   end
 
   def get_image
