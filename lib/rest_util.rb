@@ -5,7 +5,7 @@ module RestUtil
   def self.make_request(path, params = {})
 
     begin
-      url = URI.parse("https://api.themoviedb.org/3/#{path}")
+      url = URI.parse("#{BASE_PATH}#{path}")
       url.query = URI.encode_www_form(params)
 
       Rails.logger.info "[GET] #{url}"
@@ -13,7 +13,7 @@ module RestUtil
 
       begin
         res = Net::HTTP.start(url.host) {|http|
-          http.read_timeout = 30.seconds
+          http.read_timeout = CONNECTION_TIMEOUT
           http.request(req)
         }
       rescue => ex

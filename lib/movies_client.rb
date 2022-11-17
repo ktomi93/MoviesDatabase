@@ -3,7 +3,7 @@
 class MoviesClient
 
   def search query
-    RestUtil.make_request "search/movie", {:api_key => Rails.application.credentials.api_key, :query => query}
+    RestUtil.make_request "search/movie", {:api_key => API_KEY, :query => query}
   end
 
   def discover
@@ -19,6 +19,6 @@ class MoviesClient
   end
 
   def get_genres language
-    RestUtil.make_request "genre/movie/list", {:api_key => Rails.application.credentials.api_key, :language => language}
+    RestUtil.make_request "genre/movie/list", {:api_key => API_KEY, :language => language}
   end
 end
