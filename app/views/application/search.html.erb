@@ -1,0 +1,34 @@
+<div class="search-form">
+  <%= form_with url: search_movie_path, method: :get do |form| %>
+    <%= form.text_field :search_query, class: "form-control search-bar", placeholder: "Search..." %>
+    <%= form.submit "Search", class: "btn btn-outline-primary me-2 search-button" %>
+  <% end %>
+</div>
+
+<div class="search-results">
+  <% @movies&.each do |movie| %>
+    <div class="movie-card">
+      <%= get_poster_image movie["poster_path"] %>
+    </div>
+  <% end %>
+</div>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+
+    <li class="page-item <%= @current_page == 1 ? "disabled" : "" %>">
+      <%= link_to "<<", page_navigation_path(:search_movie_path, @current_page - 1), class: "page-link" %>
+    </li>
+
+    <% (get_start_interval..get_end_interval).to_a.each do |number| %>
+      <li class="page-item <%= number == @current_page ? "active" : "" %>">
+        <%= link_to number, page_navigation_path(:search_movie_path, number), class: "page-link" %>
+      </li>
+    <% end %>
+
+    <% if @total_pages.present? %>
+      <li class="page-item <%= @current_page == @total_pages ? "disabled" : "" %>">
+        <%= link_to ">>", page_navigation_path(:search_movie_path, @current_page + 1), class: "page-link" %>
+    <% end %>
+  </ul>
+</nav>
