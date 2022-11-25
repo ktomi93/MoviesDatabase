@@ -31,3 +31,9 @@
 
 en:
   hello: "Hello world"
+  cached_notification: "The results are loaded from cache"
+  search: "Search"
+  search_placeholder: "Search..."
+  release_date: "Release date: "
+  genre: "Genre: "
+  title: "Title: "
