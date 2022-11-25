@@ -35,16 +35,17 @@ html, body {
 
   & .search-form {
     width: 60%;
-    margin: 64px auto auto auto;
+    margin: 32px auto auto auto;
   }
 
   & .search-results {
     display: table;
-    margin: 0 auto 30px auto;
+    margin: 30px auto 30px auto;
   }
 
   & .movie-card {
-    width: 10%;
+    width: 176px;
+    height: 253px;
     max-height: 50px;
     margin: 16px 15px 16px 15px;
     padding: 10px 10px;
@@ -60,7 +61,7 @@ html, body {
 }
 
 .search-bar {
-  width: 87%;
+  width: 84%;
   display: inline-block;
   margin-right: 10px;
 }
@@ -70,4 +71,27 @@ html, body {
   margin-bottom: 2px;
 }
 
+.image-size {
+  width: 154px;
+  height: 231px;
+}
+
+.flash-message {
+  width: 30%;
+  margin: 10px auto 0 auto;
+
+  & > span {
+    margin: 0 auto 0 auto;
+    display: table;
+  }
+}
+
+.info {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.info-data {
+  font-size: 12px;
+}
 
