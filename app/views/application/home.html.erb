@@ -1,9 +1,10 @@
-<div class="search-form">
-  <%= form_with url: search_movie_path, method: :get do |form| %>
-    <%= form.text_field :search_query, class: "form-control search-bar", placeholder: "Search..." %>
-    <%= form.submit "Search", class: "btn btn-outline-primary me-2 search-button" %>
-  <% end %>
-</div>
+<% if @cached %>
+  <div class="alert alert-warning flash-message" role="alert">
+    <span>
+      <%= I18n.t("cached_notification") %>
+    </span>
+  </div>
+<% end %>
 
 <div class="search-form">
   <%= render partial: "search_form" %>
