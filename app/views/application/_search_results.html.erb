@@ -1,0 +1,43 @@
+<div class="search-results">
+  <% @movies&.each do |movie| %>
+    <div class="movie-card">
+      <%= get_poster_image movie["poster_path"], movie["title"] %>
+      <span class="info"><%= I18n.t("title") %></span>
+      <%= label_tag(nil, truncate(movie["title"], :length => 20), class: "info-data", title: movie["title"], 'data-toggle' => 'tooltip', 'data-placement' => 'right') %>
+      <br>
+      <span class="info"><%= I18n.t("release_date") %></span>
+      <span class="info-data"> <%= movie["release_date"].present? ? DateTime.parse(movie["release_date"]).strftime("%d %b %Y") : ""%> </span>
+      <br>
+      <span class="info"><%= I18n.t("genre") %></span>
+      <%= label_tag(nil, truncate(genres(movie["genre_ids"]), :length => 20), class: "info-data", title: genres(movie["genre_ids"]), 'data-toggle' => 'tooltip', 'data-placement' => 'right') %>
+    </div>
+  <% end %>
+</div>
+
+<% if @total_pages.blank? || @total_pages > 1 %>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+
+      <li class="page-item <%= @current_page_number == 1 ? "disabled" : "" %>">
+        <%= link_to "<", page_navigation_path(:search_movie_path, @current_page_number - 1), class: "page-link" %>
+      </li>
+
+      <% (get_start_interval..get_end_interval).to_a.each do |number| %>
+        <li class="page-item <%= number == @current_page_number ? "active" : "" %>">
+          <%= link_to number, page_navigation_path(path, number), class: "page-link" %>
+        </li>
+      <% end %>
+
+      <% if @total_pages.present? %>
+        <li class="page-item <%= @current_page_number == @total_pages ? "disabled" : "" %>">
+          <%= link_to ">", page_navigation_path(path, @current_page_number + 1), class: "page-link" %>
+      <% end %>
+    </ul>
+  </nav>
+<% end %>
+
+<script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>

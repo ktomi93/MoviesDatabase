@@ -5,26 +5,10 @@
   <% end %>
 </div>
 
-<div class="search-results">
-  <% @movies&.each do |movie| %>
-    <div class="movie-card">
-      <%= get_poster_image movie["poster_path"] %>
-    </div>
-  <% end %>
+<div class="search-form">
+  <%= render partial: "search_form" %>
 </div>
 
-<nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-center">
-
-    <li class="page-item <%= @current_page == 1 ? "disabled" : "" %>">
-      <%= link_to "<<", page_navigation_path(:discover_path, @current_page - 1), class: "page-link" %>
-    </li>
-
-    <% (get_start_interval..get_end_interval).to_a.each do |number| %>
-      <li class="page-item <%= number == @current_page ? "active" : "" %>">
-        <%= link_to number, page_navigation_path(:discover_path, number), class: "page-link" %>
-      </li>
-    <% end %>
-
-  </ul>
-</nav>
+<div id="search_results">
+  <%= render partial: "search_results", locals: { :path => :discover_path } %>
+</div>
