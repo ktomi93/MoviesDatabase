@@ -23,6 +23,7 @@ module RestUtil
           res.body.present? ? JSON.parse(res.body) : nil
         else
           Rails.logger.error "#{res.code} - #{res.message}"
+          nil
         end
       end
     end
